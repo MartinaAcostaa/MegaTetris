@@ -1,0 +1,21 @@
+{
+  "name": "megatetris",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "node --test test/*.test.ts",
+    "coverage": "node --test --experimental-test-coverage test/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartinaAcostaa/MegaTetris.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MartinaAcostaa/MegaTetris/issues"
+  },
+  "homepage": "https://github.com/MartinaAcostaa/MegaTetris#readme"
+}
