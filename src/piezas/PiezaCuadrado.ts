@@ -1,4 +1,4 @@
-import { PiezaBase } from "./PiezaBase.ts";
+import { PiezaBase } from "./PiezaBase";
 
 export class PiezaCuadrado extends PiezaBase {
   public constructor() {

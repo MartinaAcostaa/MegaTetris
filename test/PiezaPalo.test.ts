@@ -1,15 +1,17 @@
-import test from "node:test";
-import assert from "node:assert/strict";
-import { PiezaPalo } from "../src/piezas/PiezaPalo.ts";
 
-test("crear una pieza Palo con su forma", () => {
+
+import { PiezaPalo } from "../src/piezas/PiezaPalo";
+
+
+  test("crear una pieza Palo con su forma", () => {
   const pieza = new PiezaPalo();
 
-  assert.equal(pieza.nombre, "Palo");
-  assert.deepEqual(pieza.forma, [
+  expect(pieza.nombre).toBe("Palo");
+  expect(pieza.forma).toEqual([
     [1],
     [1],
     [1],
     [1]
   ]);
 });
+
