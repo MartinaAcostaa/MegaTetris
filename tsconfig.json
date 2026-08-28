@@ -1,16 +1,14 @@
 {
-
-  "scripts": {
-    "test": "vitest run"
-  }, 
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-   "types": ["node", "vitest/globals"]
+    "types": ["node"],
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true
   },
   "include": [
     "src/piezas/*.ts",

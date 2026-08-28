@@ -1,17 +1,13 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado.ts";
 
-import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado";
-
-describe("Materia", () => {
-  test("crear una pieza Cuadrado con su forma", () => {
+test("crear una pieza Cuadrado con su forma", () => {
   const pieza = new PiezaCuadrado();
 
-  expect(pieza.nombre).toBe("Cuadrado");
-  expect(pieza.forma).toEqual([
+  assert.equal(pieza.nombre, "Cuadrado");
+  assert.deepEqual(pieza.forma, [
     [1, 1],
     [1, 1]
   ]);
-  });
-
-
 });
-
