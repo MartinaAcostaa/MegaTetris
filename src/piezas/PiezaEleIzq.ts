@@ -1,7 +1,7 @@
 
 import { PiezaBase } from "./PiezaBase.ts";
 
-export class PiezaLIzq extends PiezaBase{
+export class PiezaELeIzq extends PiezaBase{
 
   public constructor() {
     super("L Izquierda", [

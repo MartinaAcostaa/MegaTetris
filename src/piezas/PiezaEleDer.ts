@@ -1,4 +1,5 @@
 import { PiezaBase } from "./PiezaBase.ts";
+
 export class PiezaLDerecha extends PiezaBase {
   public constructor() {
     super("L Derecha", [
