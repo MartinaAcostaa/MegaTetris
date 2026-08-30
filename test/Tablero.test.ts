@@ -86,3 +86,26 @@ test("mover la pieza actual una fila hacia abajo", () => {
     ]
   );
 });
+
+test("detener la pieza actual al llegar al fondo del tablero", () => {
+  const tablero = new Tablero();
+  const pieza = new PiezaT();
+
+  tablero.agregarPieza(pieza, 0);
+
+  Array.from({ length: 25 }).forEach(() => {
+    tablero.moverPiezaAbajo();
+  });
+
+  assert.deepEqual(
+    tablero.celdas
+      .slice(18, 20)
+      .map((fila) => fila.slice(0, 3)),
+    pieza.forma
+  );
+
+  assert.equal(
+    tablero.celdas.flat().filter((celda) => celda === 1).length,
+    4
+  );
+});
