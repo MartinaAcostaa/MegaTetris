@@ -50,3 +50,20 @@ test("no agregar una pieza fuera de los límites laterales", () => {
     true
   );
 });
+
+test("agregar una pieza completa con posición y orientación aleatorias", () => {
+  const tablero = new Tablero();
+  const pieza = new PiezaT();
+
+  tablero.agregarPiezaAleatoria(pieza);
+
+  assert.equal(
+    tablero.celdas.flat().filter((celda) => celda === 1).length,
+    4
+  );
+
+  assert.equal(
+    tablero.celdas.every((fila) => fila.length === 10),
+    true
+  );
+});
