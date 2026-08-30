@@ -67,3 +67,22 @@ test("agregar una pieza completa con posición y orientación aleatorias", () =>
     true
   );
 });
+
+test("mover la pieza actual una fila hacia abajo", () => {
+  const tablero = new Tablero();
+  const pieza = new PiezaT();
+
+  tablero.agregarPieza(pieza, 0);
+  tablero.moverPiezaAbajo();
+
+  assert.deepEqual(
+    tablero.celdas
+      .slice(0, 3)
+      .map((fila) => fila.slice(0, 3)),
+    [
+      [0, 0, 0],
+      [0, 1, 0],
+      [1, 1, 1]
+    ]
+  );
+});
