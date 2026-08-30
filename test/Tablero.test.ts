@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { Tablero } from "../src/Tablero.ts";
 import { PiezaT } from "../src/piezas/PiezaT.ts";
+import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado.ts";
 
 test("crear un tablero vacío de 20 filas por 10 columnas", () => {
   const tablero = new Tablero();
@@ -107,5 +108,35 @@ test("detener la pieza actual al llegar al fondo del tablero", () => {
   assert.equal(
     tablero.celdas.flat().filter((celda) => celda === 1).length,
     4
+  );
+});
+
+test("detener la pieza actual cuando encuentra otra pieza debajo", () => {
+  const tablero = new Tablero();
+  const piezaFija = new PiezaCuadrado();
+
+  tablero.agregarPieza(piezaFija, 0);
+
+  Array.from({ length: 18 }).forEach(() => {
+    tablero.moverPiezaAbajo();
+  });
+
+  const piezaActual = new PiezaCuadrado();
+  tablero.agregarPieza(piezaActual, 0);
+
+  Array.from({ length: 20 }).forEach(() => {
+    tablero.moverPiezaAbajo();
+  });
+
+  assert.deepEqual(
+    tablero.celdas
+      .slice(16, 20)
+      .map((fila) => fila.slice(0, 2)),
+    [
+      [1, 1],
+      [1, 1],
+      [1, 1],
+      [1, 1]
+    ]
   );
 });
