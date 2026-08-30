@@ -1,4 +1,5 @@
 import { PiezaBase } from "./piezas/PiezaBase.ts";
+import { PiezaRotable } from "./piezas/PiezaRotable.ts";
 
 export class Tablero {
   private _celdas: number[][];
@@ -38,5 +39,21 @@ public agregarPieza(pieza: PiezaBase, columna: number): void {
       );
     });
   });
+}
+
+public agregarPiezaAleatoria(pieza: PiezaRotable): void {
+  const cantidadDeGiros = Math.floor(Math.random() * 4);
+
+  Array.from({ length: cantidadDeGiros }).forEach(() => {
+    pieza.rotarDer();
+  });
+
+  const anchoPieza = pieza.forma[0].length;
+  const columnaMaxima = this._celdas[0].length - anchoPieza;
+  const columnaAleatoria = Math.floor(
+    Math.random() * (columnaMaxima + 1)
+  );
+
+  this.agregarPieza(pieza, columnaAleatoria);
 }
 }
