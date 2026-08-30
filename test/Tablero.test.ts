@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { Tablero } from "../src/Tablero.ts";
 import { PiezaT } from "../src/piezas/PiezaT.ts";
 import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado.ts";
+import { PiezaPalo } from "../src/piezas/PiezaPalo.ts";
 
 test("crear un tablero vacío de 20 filas por 10 columnas", () => {
   const tablero = new Tablero();
@@ -170,4 +171,29 @@ test("el juego no termina si hay lugar para la pieza en la primera fila", () => 
   tablero.agregarPieza(pieza, 0);
 
   assert.equal(tablero.juegoTerminado, false);
+});
+
+test("rotar la pieza actual cuando hay espacio para la nueva orientación", () => {
+  const tablero = new Tablero();
+  const pieza = new PiezaPalo();
+
+  tablero.agregarPieza(pieza, 0);
+  tablero.rotarPiezaIzq();
+
+  assert.deepEqual(pieza.forma, [[1, 1, 1, 1]]);
+  assert.deepEqual(tablero.celdas[0].slice(0, 4), [1, 1, 1, 1]);
+});
+
+test("detener el giro de la pieza actual cuando la nueva orientación no entra en el tablero", () => {
+  const tablero = new Tablero();
+  const pieza = new PiezaPalo();
+
+  tablero.agregarPieza(pieza, 9);
+  tablero.rotarPiezaIzq();
+
+  assert.deepEqual(pieza.forma, [[1], [1], [1], [1]]);
+  assert.deepEqual(
+    tablero.celdas.slice(0, 4).map((fila) => fila[9]),
+    [1, 1, 1, 1]
+  );
 });
