@@ -30,3 +30,23 @@ test("agregar una pieza completa dentro del tablero", () => {
     pieza.forma
   );
 });
+
+test("no agregar una pieza fuera de los límites laterales", () => {
+  const tablero = new Tablero();
+  const pieza = new PiezaT();
+
+  assert.throws(
+    () => tablero.agregarPieza(pieza, -1),
+    /limites/
+  );
+
+  assert.throws(
+    () => tablero.agregarPieza(pieza, 8),
+    /limites/
+  );
+
+  assert.equal(
+    tablero.celdas.flat().every((celda) => celda === 0),
+    true
+  );
+});
