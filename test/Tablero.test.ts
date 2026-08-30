@@ -140,3 +140,34 @@ test("detener la pieza actual cuando encuentra otra pieza debajo", () => {
     ]
   );
 });
+
+test("finalizar el juego cuando no hay lugar en la primera fila para una nueva pieza", () => {
+  const tablero = new Tablero();
+  const piezaFija = new PiezaCuadrado();
+
+  tablero.agregarPieza(piezaFija, 0);
+
+  const piezaNueva = new PiezaT();
+  tablero.agregarPieza(piezaNueva, 0);
+
+  assert.equal(tablero.juegoTerminado, true);
+
+  assert.deepEqual(
+    tablero.celdas
+      .slice(0, 2)
+      .map((fila) => fila.slice(0, 3)),
+    [
+      [1, 1, 0],
+      [1, 1, 0]
+    ]
+  );
+});
+
+test("el juego no termina si hay lugar para la pieza en la primera fila", () => {
+  const tablero = new Tablero();
+  const pieza = new PiezaT();
+
+  tablero.agregarPieza(pieza, 0);
+
+  assert.equal(tablero.juegoTerminado, false);
+});
