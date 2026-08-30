@@ -11,3 +11,15 @@ test("crear una pieza Cuadrado con su forma", () => {
     [1, 1]
   ]);
 });
+
+test("Rotar la pieza cuadrado a la izquierda", () => {
+  const pieza = new PiezaCuadrado;
+
+  pieza.rotarIzq();
+
+  assert.equal(pieza.nombre, "Cuadrado");
+  assert.deepEqual(pieza.forma, [
+    [1, 1],
+    [1, 1]
+  ]);
+});

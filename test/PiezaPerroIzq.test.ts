@@ -12,3 +12,28 @@ import { PiezaPerroIzq } from "../src/piezas/PiezaPerroIzq.ts";
   ]);
   });
 
+ test("Rotar la pieza perro izquierda hacia la izquierda", () => {
+  const pieza = new PiezaPerroIzq();
+
+  pieza.rotarIzq();
+
+  assert.equal(pieza.nombre, "Perro Izquierda");
+  assert.deepEqual(pieza.forma, [
+    [1, 0],
+    [1, 1],
+    [0, 1]
+  ]);
+  });
+
+  test("Rotar la pieza perro izquierda hacia la derecha", () => {
+  const pieza = new PiezaPerroIzq();
+
+  pieza.rotarDer();
+
+  assert.equal(pieza.nombre, "Perro Izquierda");
+  assert.deepEqual(pieza.forma, [
+    [1, 0],
+    [1, 1],
+    [0, 1]
+  ]);
+  });

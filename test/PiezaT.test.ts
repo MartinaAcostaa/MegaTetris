@@ -11,3 +11,27 @@ test("crear una pieza T con su forma", () => {
     [1, 1, 1]
   ]);
 });
+
+test("Rotar la pieza T hacia la izuqierda", () => {
+  const pieza = new PiezaT();
+   pieza.rotarIzq();
+
+  assert.equal(pieza.nombre, "T");
+  assert.deepEqual(pieza.forma, [
+    [0, 1],
+    [1, 1],
+    [0, 1]
+  ]);
+});
+
+test("Rotar la pieza T hacia la derecha", () => {
+  const pieza = new PiezaT();
+   pieza.rotarDer();
+
+  assert.equal(pieza.nombre, "T");
+  assert.deepEqual(pieza.forma, [
+    [1, 0],
+    [1, 1],
+    [1, 0]
+  ]);
+});

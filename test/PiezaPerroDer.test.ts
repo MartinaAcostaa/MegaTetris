@@ -12,3 +12,28 @@ import { PiezaPerroDerecha } from "../src/piezas/PiezaPerroDer.ts";
   ]);
   });
 
+test("Rotar la pieza Perro Derecha a la izquierda", () => {
+ const pieza = new PiezaPerroDerecha();
+
+  pieza.rotarIzq();
+
+  assert.equal(pieza.nombre, "Perro Derecha");
+  assert.deepEqual(pieza.forma, [
+    [0, 1],
+    [1, 1],
+    [1, 0]
+  ]);
+  });
+
+  test("Rotar la pieza Perro Derecha a la derecha", () => {
+ const pieza = new PiezaPerroDerecha();
+
+  pieza.rotarDer();
+
+  assert.equal(pieza.nombre, "Perro Derecha");
+  assert.deepEqual(pieza.forma, [
+    [0, 1],
+    [1, 1],
+    [1, 0]
+  ]);
+  });
