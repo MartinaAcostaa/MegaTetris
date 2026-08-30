@@ -126,4 +126,57 @@ export class Tablero {
       });
     });
   }
+
+  private rotarPieza(rotar: (pieza: PiezaRotable) => void): void {
+    const pieza = this._piezaActual as PiezaRotable;
+    const formaOriginal = pieza.forma;
+
+    pieza.forma.forEach((fila, filaPieza) => {
+      fila.forEach((celda, columnaPieza) => {
+        const filaTablero = this._filaActual + filaPieza;
+        const columnaTablero = this._columnaActual + columnaPieza;
+
+        this._celdas[filaTablero][columnaTablero] *= 1 - celda;
+      });
+    });
+
+    rotar(pieza);
+
+    const entraDentro =
+      this._columnaActual + pieza.forma[0].length <= this._celdas[0].length &&
+      this._filaActual + pieza.forma.length <= this._celdas.length;
+
+    const hayEspacio =
+      entraDentro &&
+      pieza.forma.every((fila, filaPieza) =>
+        fila.every(
+          (celda, columnaPieza) =>
+            celda === 0 ||
+            this._celdas[this._filaActual + filaPieza]
+              [this._columnaActual + columnaPieza] === 0
+        )
+      );
+
+    pieza.forma = hayEspacio ? pieza.forma : formaOriginal;
+
+    pieza.forma.forEach((fila, filaPieza) => {
+      fila.forEach((celda, columnaPieza) => {
+        const filaTablero = this._filaActual + filaPieza;
+        const columnaTablero = this._columnaActual + columnaPieza;
+
+        this._celdas[filaTablero][columnaTablero] = Math.max(
+          this._celdas[filaTablero][columnaTablero],
+          celda
+        );
+      });
+    });
+  }
+
+  public rotarPiezaIzq(): void {
+    this.rotarPieza((pieza) => pieza.rotarIzq());
+  }
+
+  public rotarPiezaDer(): void {
+    this.rotarPieza((pieza) => pieza.rotarDer());
+  }
 }
