@@ -6,6 +6,7 @@ export class Tablero {
   private _piezaActual: PiezaBase | null;
   private _filaActual: number;
   private _columnaActual: number;
+  private _juegoTerminado: boolean;
 
   public constructor() {
     this._celdas = Array.from(
@@ -15,6 +16,11 @@ export class Tablero {
     this._piezaActual = null;
     this._filaActual = 0;
     this._columnaActual = 0;
+    this._juegoTerminado = false;
+  }
+
+  public get juegoTerminado(): boolean {
+    return this._juegoTerminado;
   }
 
   public get celdas(): number[][] {
@@ -35,20 +41,30 @@ export class Tablero {
       throw new Error("La pieza supera los limites del tablero");
     }
 
+    const hayEspacio = pieza.forma.every((fila, filaPieza) =>
+      fila.every(
+        (celda, columnaPieza) =>
+          celda === 0 ||
+          this._celdas[filaPieza][columna + columnaPieza] === 0
+      )
+    );
+
+    this._juegoTerminado = this._juegoTerminado || !hayEspacio;
+
     pieza.forma.forEach((fila, filaPieza) => {
       fila.forEach((celda, columnaPieza) => {
         const columnaTablero = columna + columnaPieza;
 
         this._celdas[filaPieza][columnaTablero] = Math.max(
           this._celdas[filaPieza][columnaTablero],
-          celda
+          celda * Number(hayEspacio)
         );
       });
     });
 
-    this._piezaActual = pieza;
-    this._filaActual = 0;
-    this._columnaActual = columna;
+    this._piezaActual = hayEspacio ? pieza : this._piezaActual;
+    this._filaActual = hayEspacio ? 0 : this._filaActual;
+    this._columnaActual = hayEspacio ? columna : this._columnaActual;
   }
 
   public agregarPiezaAleatoria(pieza: PiezaRotable): void {
