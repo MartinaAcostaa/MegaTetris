@@ -32,4 +32,9 @@ export class Tetris {
   public comenzar(): void {
     this._estado = "jugando";
   }
+
+  public tick(): void {
+  this._reloj.Tick();
+  this._tablero.moverPiezaAbajo();
+}
 }
