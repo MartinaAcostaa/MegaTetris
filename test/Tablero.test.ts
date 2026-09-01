@@ -197,3 +197,33 @@ test("detener el giro de la pieza actual cuando la nueva orientación no entra e
     [1, 1, 1, 1]
   );
 });
+
+test("eliminar una línea completa y bajar todas las celdas de arriba", () => {
+  const tablero = new Tablero();
+  const celdas = tablero.celdas;
+
+  celdas[19] = Array(10).fill(1);
+  celdas[18][0] = 1;
+  celdas[18][1] = 1;
+  tablero.celdas = celdas;
+
+  tablero.eliminarLineasCompletas();
+
+  assert.equal(tablero.celdas.length, 20);
+  assert.deepEqual(tablero.celdas[19], [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]);
+  assert.deepEqual(tablero.celdas[0], Array(10).fill(0));
+});
+
+test("eliminar automáticamente la línea que se completa al agregar una pieza", () => {
+  const tablero = new Tablero();
+  const celdas = tablero.celdas;
+
+  celdas[0] = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1];
+  tablero.celdas = celdas;
+
+  tablero.agregarPieza(new PiezaCuadrado(), 0);
+
+  assert.equal(tablero.celdas.length, 20);
+  assert.deepEqual(tablero.celdas[0], Array(10).fill(0));
+  assert.deepEqual(tablero.celdas[1], [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]);
+});
