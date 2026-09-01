@@ -13,5 +13,5 @@
   "include": [
     "src/piezas/*.ts",
     "test/**/*.ts"
-  ]
+, "src/Clock.ts", "src/Tetris.ts"  ]
 }
