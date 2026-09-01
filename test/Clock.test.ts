@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { Clock } from "../src/piezas/Clock.ts";
+import { Clock } from "../src/Clock.ts";
 
 test("se prueba que cuando se llama al método Tick(), el valor de getTick() aumenta en 1", () => {
 
