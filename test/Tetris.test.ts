@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { Tetris } from "../src/Tetris.ts";
 import { PiezaT } from "../src/piezas/PiezaT.ts";
+import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado.ts";
 
 test("crear y comenzar una partida de Tetris", () => {
   const juego = new Tetris();
@@ -66,4 +67,14 @@ test("rotar la pieza actual hacia la derecha desde Tetris", () => {
     [1, 1],
     [1, 0]
   ]);
+});
+
+test("informar que el juego finalizó cuando no hay lugar para otra pieza", () => {
+  const juego = new Tetris();
+
+  juego.comenzar();
+  juego.tablero.agregarPieza(new PiezaCuadrado(), 0);
+  juego.tablero.agregarPieza(new PiezaT(), 0);
+
+  assert.equal(juego.estado, "finalizado");
 });
