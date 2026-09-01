@@ -37,4 +37,12 @@ export class Tetris {
   this._reloj.Tick();
   this._tablero.moverPiezaAbajo();
 }
+
+public rotarIzquierda(): void {
+  this._tablero.rotarPiezaIzq();
+}
+
+public rotarDerecha(): void {
+  this._tablero.rotarPiezaDer();
+}
 }
