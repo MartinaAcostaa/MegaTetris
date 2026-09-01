@@ -18,8 +18,10 @@ export class Tetris {
   }
 
   public get estado(): EstadoJuego {
-    return this._estado;
-  }
+  return this._tablero.juegoTerminado
+    ? "finalizado"
+    : this._estado;
+}
 
   public get tablero(): Tablero {
     return this._tablero;
