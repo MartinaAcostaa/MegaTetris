@@ -35,3 +35,35 @@ test("un tick avanza el reloj y mueve la pieza actual", () => {
     ]
   );
 });
+
+test("rotar la pieza actual hacia la izquierda desde Tetris", () => {
+  const juego = new Tetris();
+  const pieza = new PiezaT();
+
+  juego.comenzar();
+  juego.tablero.agregarPieza(pieza, 0);
+
+  juego.rotarIzquierda();
+
+  assert.deepEqual(pieza.forma, [
+    [0, 1],
+    [1, 1],
+    [0, 1]
+  ]);
+});
+
+test("rotar la pieza actual hacia la derecha desde Tetris", () => {
+  const juego = new Tetris();
+  const pieza = new PiezaT();
+
+  juego.comenzar();
+  juego.tablero.agregarPieza(pieza, 0);
+
+  juego.rotarDerecha();
+
+  assert.deepEqual(pieza.forma, [
+    [1, 0],
+    [1, 1],
+    [1, 0]
+  ]);
+});
