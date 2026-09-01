@@ -23,3 +23,15 @@ test("Rotar la pieza cuadrado a la izquierda", () => {
     [1, 1]
   ]);
 });
+
+test("Rotar la pieza cuadrado a la derecha", () => {
+  const pieza = new PiezaCuadrado();
+
+  pieza.rotarDer();
+
+  assert.equal(pieza.nombre, "Cuadrado");
+  assert.deepEqual(pieza.forma, [
+    [1, 1],
+    [1, 1]
+  ]);
+});
