@@ -65,6 +65,23 @@ export class Tablero {
     this._piezaActual = hayEspacio ? pieza : this._piezaActual;
     this._filaActual = hayEspacio ? 0 : this._filaActual;
     this._columnaActual = hayEspacio ? columna : this._columnaActual;
+
+    this.eliminarLineasCompletas();
+  }
+
+  public eliminarLineasCompletas(): void {
+    const filasNoCompletas = this._celdas.filter(
+      (fila) => !fila.every((celda) => celda === 1)
+    );
+
+    const filasEliminadas = this._celdas.length - filasNoCompletas.length;
+
+    const filasVacias = Array.from(
+      { length: filasEliminadas },
+      () => Array(this._celdas[0].length).fill(0)
+    );
+
+    this._celdas = [...filasVacias, ...filasNoCompletas];
   }
 
   public agregarPiezaAleatoria(pieza: PiezaRotable): void {
@@ -125,6 +142,8 @@ export class Tablero {
         );
       });
     });
+
+    this.eliminarLineasCompletas();
   }
 
   private rotarPieza(rotar: (pieza: PiezaRotable) => void): void {
