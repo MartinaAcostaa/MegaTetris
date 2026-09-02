@@ -7,8 +7,10 @@ export class Tablero {
   private _filaActual: number;
   private _columnaActual: number;
   private _juegoTerminado: boolean;
+  private _lineasEliminadas: number;
+  private _lineasParaGanar: number;
 
-  public constructor() {
+  public constructor(lineasParaGanar: number = 10) {
     this._celdas = Array.from(
       { length: 20 },
       () => Array(10).fill(0)
@@ -17,10 +19,24 @@ export class Tablero {
     this._filaActual = 0;
     this._columnaActual = 0;
     this._juegoTerminado = false;
+    this._lineasEliminadas = 0;
+    this._lineasParaGanar = lineasParaGanar;
   }
 
   public get juegoTerminado(): boolean {
     return this._juegoTerminado;
+  }
+
+  public get juegoGanado(): boolean {
+    return this._lineasEliminadas >= this._lineasParaGanar;
+  }
+
+  public get lineasEliminadas(): number {
+    return this._lineasEliminadas;
+  }
+
+  public get lineasParaGanar(): number {
+    return this._lineasParaGanar;
   }
 
   public get celdas(): number[][] {
@@ -75,6 +91,7 @@ export class Tablero {
     );
 
     const filasEliminadas = this._celdas.length - filasNoCompletas.length;
+    this._lineasEliminadas += filasEliminadas;
 
     const filasVacias = Array.from(
       { length: filasEliminadas },
