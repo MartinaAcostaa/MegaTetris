@@ -100,8 +100,6 @@ test("se pierde en tetris porque el tablero está lleno(ver2)", () => {
     tetris.tablero.celdas = tablero;
     tetris.tablero.agregarPieza(new PiezaT(), 0);
 
-    console.table(tablero);
-
     assert.equal(tetris.estado, "finalizado");
 });
 
