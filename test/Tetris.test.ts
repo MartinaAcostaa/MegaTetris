@@ -4,6 +4,8 @@ import { Tetris } from "../src/Tetris.ts";
 import { PiezaT } from "../src/piezas/PiezaT.ts";
 import { PiezaCuadrado } from "../src/piezas/PiezaCuadrado.ts";
 import { PiezaPalo } from "../src/piezas/PiezaPalo.ts";
+import { PiezaELeIzq } from "../src/piezas/PiezaEleIzq.ts";
+import { PiezaLDerecha } from "../src/piezas/PiezaEleDer.ts";
 
 
 test("crear y comenzar una partida de Tetris", () => {
@@ -71,14 +73,21 @@ test("rotar la pieza actual hacia la derecha desde Tetris", () => {
   ]);
 });
 
-test("informar que el juego finalizó cuando no hay lugar para otra pieza", () => {
+test("se pierde en tetris porque no entran mas piezas", () => {
   const juego = new Tetris();
 
   juego.comenzar();
   juego.tablero.agregarPieza(new PiezaCuadrado(), 0);
   juego.tablero.agregarPieza(new PiezaT(), 2);
+  juego.tablero.agregarPieza(new PiezaELeIzq(), 5);
+  juego.tablero.agregarPieza(new PiezaLDerecha(), 7);
+  juego.tablero.agregarPieza(new PiezaPalo(), 9);
+  juego.tablero.agregarPieza(new PiezaPalo(), 0);
 
   assert.equal(juego.estado, "finalizado");
+
+
+
   
 });
 
