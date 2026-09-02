@@ -5,7 +5,7 @@ export type EstadoJuego =
   | "no_iniciado"
   | "jugando"
   | "finalizado"
-  | "ganado";
+  | "ganado"
 
 export class Tetris {
   private _estado: EstadoJuego;
@@ -23,7 +23,9 @@ export class Tetris {
       ? "finalizado"
       : this._tablero.juegoGanado
         ? "ganado"
+        
         : this._estado;
+
   }
 
   public get tablero(): Tablero {

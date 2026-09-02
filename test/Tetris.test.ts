@@ -73,7 +73,7 @@ test("rotar la pieza actual hacia la derecha desde Tetris", () => {
   ]);
 });
 
-test("se pierde en tetris porque no entran mas piezas", () => {
+test("se pierde en tetris porque no entran mas piezas (ver1)", () => {
   const juego = new Tetris();
 
   juego.comenzar();
@@ -85,11 +85,26 @@ test("se pierde en tetris porque no entran mas piezas", () => {
   juego.tablero.agregarPieza(new PiezaPalo(), 0);
 
   assert.equal(juego.estado, "finalizado");
-
-
-
   
 });
+
+test("se pierde en tetris porque el tablero está lleno(ver2)", () => {
+
+    const tablero = Array.from(
+        { length: 20 },
+        () => Array(10).fill(1)
+    );
+
+    const tetris = new Tetris();
+    tetris.comenzar();
+    tetris.tablero.celdas = tablero;
+    tetris.tablero.agregarPieza(new PiezaT(), 0);
+
+    console.table(tablero);
+
+    assert.equal(tetris.estado, "finalizado");
+});
+
 
 test("Se gana tetris", () => {
   const lineasQueCompletaUnPalo = 4;

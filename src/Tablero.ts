@@ -31,6 +31,7 @@ export class Tablero {
     return this._lineasEliminadas >= this._lineasParaGanar;
   }
 
+
   public get lineasEliminadas(): number {
     return this._lineasEliminadas;
   }
